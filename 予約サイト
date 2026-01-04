@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body { font-family: sans-serif; padding: 20px; }
+      input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+      button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <h2>美容院 予約フォーム</h2>
+    <form id="reserveForm">
+      名前: <input type="text" name="name" required><br>
+      メニュー: 
+      <select name="menu">
+        <option value="カット">カット (60分)</option>
+        <option value="カラー">カラー (90分)</option>
+        <option value="カット＆カラー">カット＆カラー (120分)</option>
+      </select><br>
+      希望日時: <input type="datetime-local" name="date" required><br>
+      メールアドレス: <input type="email" name="email" required><br>
+      <button type="button" onclick="submitForm(this.form)">予約する</button>
+    </form>
+    <div id="msg"></div>
+
+    <script>
+      function submitForm(form) {
+        google.script.run
+          .withSuccessHandler(msg => document.getElementById('msg').innerHTML = msg)
+          .processForm(form);
+      }
+    </script>
+  </body>
+</html>
